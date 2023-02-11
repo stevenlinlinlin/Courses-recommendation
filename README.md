@@ -16,7 +16,7 @@ Course/Subgroup recommendation in BERT repository
 python bert_cls.py
 ```
 ### BM25
-Subgroup recommendation in BM25 repository
+Course/Subgroup recommendation in BM25 repository
 ```python
 python bm25_subgroup.py
 ```
