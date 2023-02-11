@@ -1,4 +1,4 @@
-# Courses recommendation
+# Recommendation
 use machine learning models to recommend courses or subgroups to users
 
 ## Data
