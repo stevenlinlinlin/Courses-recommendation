@@ -11,18 +11,18 @@ use machine learning models to recommend courses or subgroups to users
 
 ## Models
 ### multi-label BERT
-Course/Subgroup recommendation
+Course/Subgroup recommendation in BERT repository
 ```python
 python bert_cls.py
 ```
 ### BM25
-Subgroup recommendation
+Subgroup recommendation in BM25 repository
 ```python
 python bm25_subgroup.py
 ```
 
 ### XGBoost
-Course recommendation
+Course recommendation in XGBoost repository
 ```python
 python xgb_cls.py
 ```
