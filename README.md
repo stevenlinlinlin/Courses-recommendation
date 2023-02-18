@@ -1,6 +1,11 @@
 # Recommendation
-use machine learning models to recommend courses or subgroups to users
+use HuggingFace BERT-Chinese model to recommend courses or subgroups to users
 
+## Packages installation
+Install python packages
+```python
+pip install -r requirements.txt
+```
 ## Data
 ### users data
 - user_id, gender, occupation_titles, interests, recreation_names
@@ -9,7 +14,7 @@ use machine learning models to recommend courses or subgroups to users
 ### courses data
 - course_id, course_name, course_price, teacher_id, teacher_intro, groups, sub_groups, topics
 
-## Models
+## Model
 ### multi-label BERT
 Course/Subgroup recommendation in BERT repository
 - Courses
@@ -19,15 +24,4 @@ python bert_courses.py
 - Subgroups
 ```python
 python bert_groups.py
-```
-### BM25
-Course/Subgroup recommendation in BM25 repository
-```python
-python bm25_subgroup.py
-```
-
-### XGBoost
-Course recommendation in XGBoost repository
-```python
-python xgb_cls.py
 ```
