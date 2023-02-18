@@ -12,8 +12,13 @@ use machine learning models to recommend courses or subgroups to users
 ## Models
 ### multi-label BERT
 Course/Subgroup recommendation in BERT repository
+- Courses
 ```python
-python bert_cls.py
+python bert_courses.py
+```
+- Subgroups
+```python
+python bert_groups.py
 ```
 ### BM25
 Course/Subgroup recommendation in BM25 repository
