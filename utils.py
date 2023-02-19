@@ -1,4 +1,5 @@
 import csv
+import numpy as np
 
 
 def read_users_data():
@@ -142,6 +143,44 @@ def write_test_groups_data(test_dataset, predicts_list, id2group, ouptut_file_pa
             writer.writerow([test_dataset[i]["user_id"], subgroup])
 
 
+def read_user_group_matrix(group2id):
+    users_group_matrix = []
+    users = {}
+    users_list = []
+    with open('data/train_group.csv', newline='') as csvfile:
+        users_group = csv.DictReader(csvfile)
+        for i, user in enumerate(users_group):
+            group = np.zeros(91)
+            if user['subgroup'] != '':
+                for c in user['subgroup'].split(' '):
+                    group[group2id[c]] = 1.0
+            users[user['user_id']] = i
+            users_list.append(user['user_id'])
+            users_group_matrix.append(group)
+    return users_group_matrix, users, users_list
 
 
+def read_userinfo():
+    users_info = {}
+    with open('data/users.csv', newline='') as csvfile:
+        u = csv.DictReader(csvfile)
+        for user in u:
+            users_info[user['user_id']] = user['interests']
+    return users_info
 
+
+def read_user_course_matrix(course2id):
+    users_course_matrix = []
+    users = {}
+    users_list = []
+    with open('data/train.csv', newline='') as csvfile:
+        users_course = csv.DictReader(csvfile)
+        for i, user in enumerate(users_course):
+            course = np.zeros(728)
+            if user['course_id'] != '':
+                for c in user['course_id'].split(' '):
+                    course[course2id[c]] = 1.0
+            users[user['user_id']] = i
+            users_list.append(user['user_id'])
+            users_course_matrix.append(course)
+    return users_course_matrix, users, users_list
