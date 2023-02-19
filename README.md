@@ -18,19 +18,20 @@ pip install -r requirements.txt
 ### multi-label BERT
 - Courses
 ```python
-python bert_courses.py
+python bert_courses.py --output_dir [output_dir]
 ```
 - Subgroups
 ```python
-python bert_groups.py
+python bert_groups.py --output_dir [output_dir]
 ```
 
 ### ALS + BM25 recommendation
 - Courses
 ```python
-python als_bm25_courses.py
+python als_bm25_courses.py --output_dir [output_dir]
 ```
 - Subgroups
 ```python
-python als_bm25_groups.py
+python als_bm25_groups.py --output_dir [output_dir]
+```
 ```
