@@ -14,9 +14,8 @@ pip install -r requirements.txt
 ### courses data
 - course_id, course_name, course_price, teacher_id, teacher_intro, groups, sub_groups, topics
 
-## Model
+## Models
 ### multi-label BERT
-Course/Subgroup recommendation in BERT repository
 - Courses
 ```python
 python bert_courses.py
@@ -24,4 +23,14 @@ python bert_courses.py
 - Subgroups
 ```python
 python bert_groups.py
+```
+
+### ALS + BM25 recommendation
+- Courses
+```python
+python als&bm25_courses.py
+```
+- Subgroups
+```python
+python als&bm25_groups.py
 ```
