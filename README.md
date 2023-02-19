@@ -28,9 +28,9 @@ python bert_groups.py
 ### ALS + BM25 recommendation
 - Courses
 ```python
-python als&bm25_courses.py
+python als_bm25_courses.py
 ```
 - Subgroups
 ```python
-python als&bm25_groups.py
+python als_bm25_groups.py
 ```
