@@ -34,4 +34,3 @@ python als_bm25_courses.py --output_dir [output_dir]
 ```python
 python als_bm25_groups.py --output_dir [output_dir]
 ```
-```
