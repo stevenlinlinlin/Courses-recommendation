@@ -1,5 +1,5 @@
 # Recommendation
-use HuggingFace BERT-Chinese model to recommend courses or subgroups to users
+use HuggingFace(BERT-Chinese) model, BM25,  Alternating Least Square to recommend courses or subgroups to users
 
 ## Packages installation
 Install python packages
@@ -7,15 +7,21 @@ Install python packages
 pip install -r requirements.txt
 ```
 ## Data
-### users data
+### Train data
+#### users data
 - user_id, gender, occupation_titles, interests, recreation_names
-### users purchase courses data
+#### users purchase courses data
 - user_id, course_id
-### courses data
+#### courses data
 - course_id, course_name, course_price, teacher_id, teacher_intro, groups, sub_groups, topics
 
+### Test data
+- seen users_id data
+- unseen users_id data
+
 ## Models
-### multi-label BERT
+### Multi-label BERT
+I use HuggingFace(BERT-Chinese) model to train multi-label classification model to predict courses or subgroups for users.
 - Courses
 ```python
 python bert_courses.py --output_dir [output_dir]
@@ -26,6 +32,7 @@ python bert_groups.py --output_dir [output_dir]
 ```
 
 ### ALS + BM25 recommendation
+For unseen data, I use BM25 to find smiliar seen user_id and recommend  courses or subgroups to unseen user_id with ALS.
 - Courses
 ```python
 python als_bm25_courses.py --output_dir [output_dir]
