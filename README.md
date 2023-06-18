@@ -1,5 +1,5 @@
 # Recommendation
-use HuggingFace(BERT-Chinese) model, BM25,  Alternating Least Square to recommend courses or subgroups to users
+use HuggingFace(BERT-Chinese) model, [BM25](https://github.com/dorianbrown/rank_bm25), [Alternating Least Square](https://github.com/benfred/implicit) to recommend courses or subgroups to users
 
 ## Packages installation
 Install python packages
@@ -7,6 +7,7 @@ Install python packages
 pip install -r requirements.txt
 ```
 ## Data
+the following data(csv) is in data folder.
 ### Train data
 #### users data
 - user_id, gender, occupation_titles, interests, recreation_names
