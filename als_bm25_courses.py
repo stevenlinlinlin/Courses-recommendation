@@ -9,7 +9,7 @@ from rank_bm25 import BM25Okapi
 
 def main(args):
     # data
-    course2id, id2group = read_courses_data()
+    course2id, id2course = read_courses_data()
     users_course_matrix, users, users_list = read_user_course_matrix(course2id)
     users_course_matrix = np.array(users_course_matrix)
     users_info = read_userinfo()
