@@ -11,6 +11,29 @@ from transformers import AutoModelForSequenceClassification
 from transformers import TrainingArguments, Trainer
 
 
+def preprocess_data(examples):
+  # take a batch of texts
+  text = examples["interests"]
+  # encode them
+  encoding = tokenizer(text, padding="max_length", truncation=True, max_length=128)
+  # create numpy array of shape (batch_size, num_labels)
+  labels = np.zeros(len(course2id))
+  # fill numpy array
+  for id in examples["course_id"]:
+      labels[id] = 1
+
+  encoding["labels"] = labels.tolist()
+  
+  return encoding
+
+def preprocess_test_data(examples):
+  # take a batch of texts
+  text = examples["interests"]
+  # encode them
+  encoding = tokenizer(text, padding="max_length", truncation=True, max_length=128)
+  return encoding
+
+
 def main(args):
   # read data
   users = read_users_data()
@@ -32,40 +55,17 @@ def main(args):
   # tokenizer
   tokenizer = AutoTokenizer.from_pretrained("hfl/chinese-bert-wwm-ext")
 
-  def preprocess_data(examples):
-    # take a batch of texts
-    text = examples["interests"]
-    # encode them
-    encoding = tokenizer(text, padding="max_length", truncation=True, max_length=128)
-    # create numpy array of shape (batch_size, num_labels)
-    labels = np.zeros(len(course2id))
-    # fill numpy array
-    for id in examples["course_id"]:
-        labels[id] = 1
-
-    encoding["labels"] = labels.tolist()
-    
-    return encoding
-
-  def preprocess_test_data(examples):
-    # take a batch of texts
-    text = examples["interests"]
-    # encode them
-    encoding = tokenizer(text, padding="max_length", truncation=True, max_length=128)
-    return encoding
-
+  # encode dataset
   encoded_train_dataset = dataset['train'].map(preprocess_data, remove_columns=dataset['train'].column_names)
   encoded_validation_dataset = dataset['validation'].map(preprocess_data, remove_columns=dataset['validation'].column_names)
   encoded_test_unseen_dataset = dataset['test_unseen'].map(preprocess_test_data, remove_columns=dataset['test_unseen'].column_names)
   encoded_test_seen_dataset = dataset['test_seen'].map(preprocess_test_data, remove_columns=dataset['test_seen'].column_names)
-
 
   # set format to torch
   encoded_train_dataset.set_format("torch")
   encoded_validation_dataset.set_format("torch")
   encoded_test_unseen_dataset.set_format("torch")
   encoded_test_seen_dataset.set_format("torch")
-
 
   # model
   model = AutoModelForSequenceClassification.from_pretrained("hfl/chinese-bert-wwm-ext", 
@@ -113,7 +113,6 @@ def main(args):
 
   write_test_courses_data(encoded_test_seen_dataset, predicts_seen_list, id2course, f'{args.output_dir}/bertchinese_seen_course.csv')
   print('test seen is done!')
-
 
 
 def parse_args():
